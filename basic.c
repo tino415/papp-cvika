@@ -18,10 +18,12 @@ void *thread_function (void *arg) {
 
 int main(void) {
 	int id;
-	int num_of_threads;
+	int num_of_threads = -1;
 
-	printf("Zadajte pocet threadow:\n");
-	scanf("%d", &num_of_threads);
+	while(num_of_threads < 0 || num_of_threads > 6) {
+		printf("Zadajte pocet threadow(od 0 do 5):\n");
+		scanf("%d", &num_of_threads);
+	}
 
 	MThread *threads = malloc(num_of_threads*sizeof(MThread));
 
