@@ -11,7 +11,7 @@ CFLAGS	=  -g -O3 -Wall
 LFLAGS	= -lm -lpthread
 UNAME := $(shell uname -s)
 
-ALL =   basic
+ALL =   basic condition1 basic2
 
 all:  $(ALL)
 

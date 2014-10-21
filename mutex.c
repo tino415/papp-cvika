@@ -3,8 +3,6 @@
 #include <pthread.h>
 #include <unistd.h>
 
-//TODO make it done
-
 typedef struct mthread {
 	int id;
 	char message[50];
@@ -16,12 +14,20 @@ pthread_mutex_t condition_mutex = PTHREAD_MUTEX_INITIALIZER;
 void *thread_function (void *arg) {
 	MThread *thread = arg;
 	int i;
+	#ifdef __linux__
+	sleep(rand());
+	#else
 	Sleep(rand());
+	#endif
 
 	pthread_mutex_lock( &condition_mutex );
 
 	for(i = 0; i < 3; i++) {
+		#ifdef __linux__
+		sleep(1);
+		#else
 	    Sleep(1);
+		#endif
 	    printf("%d in critical place\n", thread->id);
 	}
 

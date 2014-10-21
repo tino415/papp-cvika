@@ -18,12 +18,21 @@ pthread_mutex_t condition_mutex = PTHREAD_MUTEX_INITIALIZER;
 void *thread_function (void *arg) {
 	MThread *thread = arg;
 	int i;
+	#ifdef __MINGW64__
 	Sleep(rand());
+	#else
+	sleep(rand());
+	#endif
+
 
 	pthread_mutex_lock( &condition_mutex );
 
 	for(i = 0; i < (thread->id+1); i++) {
+		#ifdef __MINGW64__
 	    Sleep(1);
+		#else
+		sleep(1);
+		#endif
 	    sum += NUM_OF_THREADS;
 	}
 
